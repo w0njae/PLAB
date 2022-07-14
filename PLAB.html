@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLAB 풋살하고 싶을 땐, 플랩풋볼</title>
+    <link rel="stylesheet" href="css/master.css">
+    <link rel="icon" href="images/favicon.png">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"> 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
+    <!--[if lt IE 9]>
+	<script src="html5shiv-master/dist/html5shiv.js"></script>
+    <![endif]-->
+    <script src="js/jquery-3.2.1.min.js"></script>
+
+    <!--box slider-->
+    <script src="js/jquery.bxslider.js"></script>
+
+
+    <!-- 스크롤을 내리면 header>div에 activated가 추가된다 -->
+    <script>
+        $(function(){
+            $(window).scroll(function(){
+            var navbar = $(this).scrollTop();
+            console.log(navbar);
+            var $header = $('header>div');
+            if(navbar > 1){
+                $header.addClass('activated');
+            }else{
+                $header.removeClass('activated');
+            }
+            });
+        });
+    </script>
+
+<!-- 스크롤 내리면 나오게 -->
+    <!-- <script>
+        $(document).ready(function() {
+        /* 1 */
+            $(window).scroll( function(){
+            /* 2 */
+                $('.fade_area').each( function(i){
+                    var plab_of_object = $(this).offset().top + $(this).outerHeight();
+                    var plab_of_window = $(window).scrollTop() + $(window).height();
+                    /* 3 */
+                    if( plab_of_window > plab_of_object){
+                        $(this).animate({'opacity':'1'},1500);
+                    }
+            });     
+        });
+    });
+    </script> -->
+
+    <script>
+        var now_text;
+        var last_text;
+
+        window.onload = function(){
+            setInterval("text_ch()",2000);
+        }
+        function text_ch(){
+            now_text =$('.text_area>span').eq(0);
+            last_text =$('.text_area>span').eq(-1);
+
+            last_text.addClass("z-idx").stop().animate({},1000, function(){
+                $(".text_area").prepend(last_text);
+                now_text.removeClass("z-idx");
+            });
+
+        }
+    </script>
+
+
+    
+<!-- 작은 이미지 클릭시 큰이미지 변경 -->
+<script>
+    $(function(){
+        var smallImg=$('#button>label'); //작은이미지
+        var bigImg=$('.reviewImg>img'); //큰이미지
+        
+        smallImg.click(function(){
+
+            var path=$(this).attr('href');
+            bigImg.attr('src',path);
+            bigImg.css('opacity','0').stop().animate({'opacity':'1'},500);
+
+        });
+    });
+
+</script>
+
+
+<!-- 검색버튼 클릭시 검색박스 나오게 -->
+<script>
+    $(function(){
+        var S1=$('.allMenu_search');
+        var B1=$('.search_bar');
+        var X1=$('.search_X');
+
+        S1.click(function(){
+            B1.fadeIn(300);
+            S1.css('opacity','0');
+        });
+        X1.click(function(){
+            B1.fadeOut(300);
+            S1.css('opacity','1');
+        });
+    });
+</script>
+
+<!-- 햄버거버튼 클릭시 햄버거박스 나오게 -->
+<script>
+    $(function(){
+        var burger=$('.allMenu_burger');
+        var burgerX=$('.allMenu_burgerX');
+        var BOX=$('.burgerBOX');
+        var header=$('header>div>div');
+        var B1=$('.search_bar');
+        var my=$('.allMenu_my');
+
+        burger.click(function(){
+            BOX.slideDown(300);
+            burgerX.css('display','block');
+            burger.css('display','none');
+            header.css('background','rgba(0, 0, 0, 0.9)');
+            B1.css('display','block');
+            my.css('display','block');
+
+        });
+        burgerX.click(function(){
+            BOX.fadeOut(100);
+            burgerX.css('display','none');
+            burger.css('display','block');
+            header.css('background','none');
+            B1.css('display','none');
+            my.css('display','none');
+        });
+    });
+</script>
+
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <div>
+                <div>
+                    <h1><a href="#">PLAB</a></h1>
+                    <nav>
+                        <ul class="burgerBOX">
+                            <li><a href="#">소셜 매치</a></li>
+                            <li><a href="#">구장 예약</a></li>
+                            <li><a href="#">팀 리그</a></li>
+                        </ul>
+                    </nav>
+                    <ul class="allMenu_view">
+                        <li>
+                            <p class="allMenu_search"></p>
+                            <div class="search_bar">
+                                <form method="post" class="search_box">
+                                    <label for="u-search"></label>
+                                    <input type="image" src="images/search.png" alt="submit">
+                                    <input type="search" id="u-serach" placeholder="검색어를 입력해주세요.">
+                                    <p class="search_X" href="#">
+                                        <span></span>
+                                        <span></span>
+                                    </p>
+                                </form>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#" class="allMenu_my"></a>
+                        </li>
+                        <li>
+                            <button class="allMenu_burger"></button>
+                        </li>
+                        <li>
+                            <button class="allMenu_burgerX"></button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <section>
+            <article id="videoPlab">
+                <div>
+                    <video autoplay muted loop>
+                        <source src="images/plabvideo.webm" type="video/webm">
+                        <source src="images/plabvideo.mp4" type="video/mp4">
+                    </video>
+                    <p><a href="#">PLAY PLAB</a></p>
+                </div>
+            </article>
+
+            <article id="wantPlab">
+                <div>
+                    <div class="text_area"  data-aos="fade-down" data-aos-duration="3000">
+                        <span class="z-idx">갑자기</span>
+                        <span>나 혼자</span>
+                        <span>학교 끝나고</span>
+                        <span>평일 아침에</span>
+                        <span>친구랑</span>
+                        <span>밤늦게</span>
+                        <span>헬스 말고</span>
+                        <span>좋은 사람들과</span>
+                        <span>공강 시간에</span>
+                        <span>여자끼리</span>
+                        <span>주말에</span>
+                        <span>여자, 남자 다 함께</span>
+                        <span>회사 끝나고</span>
+                        <h2>풋살하고 싶을 땐</h2>
+                        <h2>플랩풋볼</h2>
+                    </div>
+                    <ul data-aos="fade-up" data-aos-duration="3000">
+                        <li>
+                            <div>해</div>
+                            <h3>내가 하고 싶을때</h3>
+                            <p>매일매일 아침부터 새벽까지 언제든지</p>
+                            
+                        </li>
+                        <li>
+                            <div>그라운드</div>
+                            <h3>내가 하고 싶은 곳에서</h3>
+                            <p>집 앞, 학교, 회사, 여행 간 도시 어디서나</p>
+                        </li>
+                        <li> 
+                            <div>함께</div>
+                            <h3>내가 하고 싶은 사람들과</h3>
+                            <p>나 혼자, 친구랑, 함께, 초보만, 고수만</p>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+
+            <article id="howtoPlab">
+                <div data-aos="fade-right" data-aos-duration="3000">
+                    <h2>HOW TO</h2>
+                    <p>참여하는 방법</p>
+                    <div><img src="images/howto.png" alt="참여방법">
+                </div>
+                </div>
+            </article>
+
+            <article id="managerPlab">
+                <div>
+                    <div>
+                        <img class="manager_img" src="images/manager3.png">
+                    </div>
+                    <ul class="manager">
+                        <li data-aos="fade-up" data-aos-duration="3000" data-aos-delay="0">
+                            <div>Kind Manager</div>
+                            <h3>친절한 플랩매니저</h3>
+                            <p>
+                                <span>
+                                    체계적인 시스템으로 매치를 매끄럽게 진행합니다.
+                                    경기에 필요한 공과 조끼도 관리해요
+                                </span>
+                            </p>
+                            
+                        </li>
+                        <li data-aos="fade-up" data-aos-duration="3000" data-aos-delay="500">
+                            <div>healthy plab</div>
+                            <h3>건강한 플랩 문화</h3>
+                            <p>
+                                <span>
+                                    플랩은 경쟁보다 배려와 재미를 추구합니다.
+                                    매너 점수 제도로 비매너유저 참가를 제한해요 
+                                </span>
+                            </p>
+                        </li>
+                        <li data-aos="fade-up" data-aos-duration="3000" data-aos-delay="1000">
+                            <div>level data</div>
+                            <h3>레벨 데이터로 막상막하 매치</h3>
+                            <p>
+                                <span>
+                                    매니저가 실력에 맞게 팀을 나눠서 경기가 팽팽해요.
+                                    두 경기 이상 참가하면 내 레벨을 볼 수 있습니다.
+                                </span>
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+
+            <article id="stadiumPlab">
+                <div>
+                    <h2>PLAB STADIUM</h2>
+                    <div class="stadium-box">
+                        
+                        <ul class="stadium-list">
+                            <li class="stadium-slide"><a href="#"><img src="images/stadium-seoul.png" alt="stadium" class="stadium">
+                                <p>주소: 서울 금천구 벚꽃로 266<br>6대6 매치<br><span>예약하기</span></p>
+                                <h4>PLAB STADIUM SEOUL</h4>
+                                </a>
+                                    <ul class="stadium-info">
+                                        <li><img src="images/info_stadium.png" alt="구장"> 42x22m</li>
+                                        <li><img src="images/info_park.png" alt="주차장" class="icon-no"><span> 무료 주차장</span></li>
+                                        <li><img src="images/info_shoes.png" alt="풋살화"> 풋살화 대여</li>
+                                    </ul>
+                            </li>
+                            <li class="stadium-slide"><a href="#"><img src="images/stadium-incheon.png" class="stadium">
+                                <p>주소: 인천 서구 가정로97번길 25<br>8대8 매치<br><span>예약하기</span></p>
+                                <h4>PLAB STADIUM INCHEON</h4>
+                                </a>
+                                    <ul class="stadium-info">
+                                        <li><img src="images/info_stadium.png" alt="구장"> 70x40m</li>
+                                        <li><img src="images/info_park.png" alt="주차장"> 무료 주차장</li>
+                                        <li><img src="images/info_shoes.png" alt="풋살화"> 풋살화 대여</li>
+                                    </ul>
+                            </li>
+                            <li class="stadium-slide"><a href="#"><img src="images/stadium-jeju.png" alt="stadium" class="stadium">
+                                <p>주소: 제주 외도일동 1355-1<br>5대5 매치<br><span>예약하기</span></p>
+                                <h4>PLAB STADIUM JEJU</h4>
+                                </a>
+                                    <ul class="stadium-info">
+                                        <li><img src="images/info_stadium.png" alt="구장"> 40x20m</li>
+                                        <li><img src="images/info_park.png" alt="주차장"> 무료 주차장</li>
+                                        <li><img src="images/info_shoes.png" alt="풋살화" class="icon-no"><span> 풋살화 대여</span></li>
+                                    </ul>
+                            </li>
+                            <li class="stadium-slide"><a href="#"><img src="images/stadium-daegu.png" alt="stadium" class="stadium">
+                                <p>주소: 대구 동구 안심로69길 23<br>5대5 매치<br><span>예약하기</span></p>
+                                <h4>PLAB STADIUM DAEGU</h4>
+                                </a>
+                                    <ul class="stadium-info">
+                                        <li><img src="images/info_stadium.png" alt="구장"> 40x20m</li>
+                                        <li><img src="images/info_park.png" alt="주차장" class="icon-no"><span> 무료 주차장</span></li>
+                                        <li><img src="images/info_shoes.png" alt="풋살화" class="icon-no"><span> 풋살화 대여</span></li>
+                                    </ul>
+                            </li>
+                            <li class="stadium-slide"><a href="#"><img src="images/stadium-yeoju.png" alt="stadium" class="stadium">
+                                <p>주소: 여주 가남읍 경충대로 1412<br>5대5 매치<br><span>예약하기</span></p>
+                                <h4>PLAB STADIUM YEOJU</h4>
+                                </a>
+                                    <ul class="stadium-info">
+                                        <li><img src="images/info_stadium.png" alt="구장"> 40x20m</li>
+                                        <li><img src="images/info_park.png" alt="주차장"> 무료 주차장</li>
+                                        <li><img src="images/info_shoes.png" alt="풋살화" class="icon-no"><span> 풋살화 대여</span></li>
+                                    </ul>
+                            </li>
+                            <li class="stadium-slide"><a href="#"><img src="images/stadium-suwon.png" alt="stadium" class="stadium">
+                                <p>주소: 수원 권선구 오목천로 121<br>8대8 매치<br><span>예약하기</span></p>
+                                <h4>PLAB STADIUM SUWON</h4>
+                                </a>
+                                    <ul class="stadium-info">
+                                        <li><img src="images/info_stadium.png" alt="구장"> 70x40m</li>
+                                        <li><img src="images/info_park.png" alt="주차장"> 무료 주차장</li>
+                                        <li><img src="images/info_shoes.png" alt="풋살화"> 풋살화 대여</li>
+                                    </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+            
+            <article id="reviewPlab">
+                <div  data-aos="fade-down" data-aos-duration="3000" data-aos-offset="-1200">
+                    <div class="reviewImg">
+                        <img src="images/reviewM.png" alt="이몽용">
+                    </div>
+                    <div class="reviewBox">
+                        <input type="radio" id="reviewT" name="toggle">
+                        <input type="radio" id="reviewM" name="toggle" checked>
+                        <input type="radio" id="reviewB" name="toggle">
+
+
+                        <div class="tablist">
+                            <h3>송태훈</h3>
+                            <span>플랩매니저</span>
+                            <p>어릴 때부터 공 차는 게 사는 낙이었는데, 돈도 버니까 신기하네요.
+                                최근에 레벨 생겨서 팀 나눌 때 더 편해진 것 같습니다.</p>
+                        </div>
+
+                        <div class="tablist">
+                            <h3>이몽용</h3>
+                            <span>회사원</span>
+                            <p>영업직이라 출장이 좀 잦아요.
+                                집은 광주, 회사는 부천, 일은 인천에 있는데 가는 곳마다 플랩이 있어서 편하네요.</p>
+                        </div>
+
+                        <div class="tablist">
+                            <h3>신반석</h3>
+                            <span>대학생</span>
+                            <p>플랩은 갈 수 있는 매치가 많아요.
+                                예전에는 아침에 수업 없으면 플랩하다가 학교 갔었고, 요즘은 취준하면서 밤에 차요.</p>
+                        </div>
+
+                        <p id="button">
+                            <label for="reviewT" href="images/reviewT.png"><img src="images/reviewT-small.png" alt="송태훈">송태훈<span>플랩매니저</span></label>
+                            <label for="reviewM" href="images/reviewM.png"><img src="images/reviewM-small.png" alt="이몽용">이몽용<span>회사원</span></label>
+                            <label for="reviewB" href="images/reviewB.png"><img src="images/reviewB-small.png" alt="신반석">신반석<span>대학생</span></label>
+                        </p>
+                    </div>
+                </div>
+                <div class="signNjoin"  data-aos="fade-up" data-aos-duration="3000" data-aos-offset="-1200">
+                    <div>
+                        <h2>지금 가입하고<br>언제든 참여 할 수 있어요.</h2>
+                        <span>원데이 소셜풋살·플랩풋볼</span>
+                        <p>지금 참여하기</p>
+                    </div>
+                    <div>
+                        <img src="images/playplab.png" alt="playplab">
+                    </div>
+                </div>
+            </article>
+        </section>
+        <footer>
+            <div id="footer">
+                <div id="footer-left"> 
+                    <ul>
+                        <li>
+                            <a href="#">매치</a>
+                            <ul>
+                                <li><a href="#">모든 매치</a></li>
+                                <li><a href="#">여자 매치</a></li>
+                                <li><a href="#">남녀 모두 매치</a></li>
+                                <li><a href="#">초급 매치</a></li>
+                                <li><a href="#">중급 매치</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">서비스 지역</a>
+                            <ul>
+                                <li><a href="#">서울</a></li>
+                                <li><a href="#">경기/강원</a></li>
+                                <li><a href="#">인천</a></li>
+                                <li><a href="#">대전/세종/충청</a></li>
+                                <li><a href="#">대구/경북</a></li>
+                                <li><a href="#">부산/울산/경남</a></li>
+                                <li><a href="#">광주/전라</a></li>
+                                <li><a href="#">제주</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">플랩풋볼</a>
+                            <ul>
+                                <li><a href="#">플랩풋볼 소개</a></li>
+                                <li><a href="#">매니저 지원</a></li>
+                                <li><a href="#">채용</a></li>
+                                <li><a href="#">공지사항</a></li>
+                                <li><a href="#">자주 묻는 질문</a></li>
+                                <li><a href="#">구장제휴</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">소셜 미디어</a>
+                            <ul>
+                                <li><a href="#">인스타그램</a></li>
+                                <li><a href="#">페이스북</a></li>
+                                <li><a href="#">유튜브</a></li>
+                                <li><a href="#">트위터</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="footer-right">
+                    <h3><a href="#"><img src="images/PLAB.png" alt="PLAB로고"></a></h3>
+                    <p>풋살하고 싶을 땐, 플랩풋볼</p>
+                    <ul>
+                        <li><a href="#">이용 약관</a></li>
+                        <li><a href="#">개인정보 처리방침</a></li>
+                        <li><a href="#">사업자 정보확인</a></li>
+                    </ul>
+                    <p>플랩풋볼 ㅣ 서울특별시 마포구 잔다리로31 제우피스빌딩 2층 ㅣ 메일: contact@plabfootball.com</p>
+                    <p>02-123-4567 ㅣ 주식회사 마이플레이컴퍼니 ㅣ 사업자번호 123-45-67890 ㅣ 대표 김원재</p>
+                    <p>Copyright PLAB All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- 페이지 width가 100보다 작으면 AOS 실행 X -->
+    <script>
+        AOS.init({
+        disable: function() {
+            var maxWidth = 100;
+            return window.innerWidth < maxWidth;
+        }
+        });
+    </script>
+    
+    <script>
+        var $slider;
+    
+    function buildSliderConfiguration() {
+    
+        var deviceWidth = $(window).width();
+        
+        /* 반응형으로 설정할 옵션 정의 */
+        var slideNum;  
+        var slideMargin;
+    
+        /* 화면 사이즈별 슬라이드 갯수, 마진 설정, 기타 옵션도 설정 가능 */
+        if (deviceWidth < 767) {
+            slideNum = 1;
+            slideMargin = 30;
+        } else if (deviceWidth < 1181) {
+            slideNum = 2;
+            slideMargin = 0;
+        } else {
+            slideNum = 3;
+            slideMargin = 0;
+        }
+    
+        return {
+            slideWidth: 1000,
+            auto: true,
+            autoHover: true,
+            adaptiveHeight: true,
+            pager: false,
+            moveSlides: 1,
+            slideMargin: slideMargin, /*반응형 옵션*/
+            minSlides: slideNum,  /*반응형 옵션*/
+            maxSlides: slideNum,   /*반응형 옵션*/
+            controls: true
+        };
+    }
+    
+    function configureSlider() {
+        var config = buildSliderConfiguration();
+    
+        if ($slider && $slider.reloadSlider) {
+            $slider.reloadSlider(config);
+        } else {
+            $slider = $('.stadium-list').bxSlider(config);  /* 슬라이더 클래스 또는 아이디 입력 */
+        }
+    }
+    
+    $('.bx-prev').click(function () {
+        var current = $slider.getCurrentSlide();
+        $slider.goToPrevSlide(current) - 1;
+    });
+    
+    $('.bx-next').click(function () {
+        var current = $slider.getCurrentSlide();
+        $slider.goToNextSlide(current) + 1;
+    });
+    
+    $(window).on("orientationchange resize", configureSlider);
+    configureSlider();
+    </script>
+</body>
+</html>
