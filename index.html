@@ -8,137 +8,6 @@
     <link rel="stylesheet" href="css/master.css">
     <link rel="icon" href="images/favicon.png">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"> 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
-    <!--[if lt IE 9]>
-	<script src="html5shiv-master/dist/html5shiv.js"></script>
-    <![endif]-->
-    <script src="js/jquery-3.2.1.min.js"></script>
-
-    <!--box slider-->
-    <script src="js/jquery.bxslider.js"></script>
-
-
-    <!-- 스크롤을 내리면 header>div에 activated가 추가된다 -->
-    <script>
-        $(function(){
-            $(window).scroll(function(){
-            var navbar = $(this).scrollTop();
-            console.log(navbar);
-            var $header = $('header>div');
-            if(navbar > 1){
-                $header.addClass('activated');
-            }else{
-                $header.removeClass('activated');
-            }
-            });
-        });
-    </script>
-
-<!-- 스크롤 내리면 나오게 -->
-    <!-- <script>
-        $(document).ready(function() {
-        /* 1 */
-            $(window).scroll( function(){
-            /* 2 */
-                $('.fade_area').each( function(i){
-                    var plab_of_object = $(this).offset().top + $(this).outerHeight();
-                    var plab_of_window = $(window).scrollTop() + $(window).height();
-                    /* 3 */
-                    if( plab_of_window > plab_of_object){
-                        $(this).animate({'opacity':'1'},1500);
-                    }
-            });     
-        });
-    });
-    </script> -->
-
-    <script>
-        var now_text;
-        var last_text;
-
-        window.onload = function(){
-            setInterval("text_ch()",2000);
-        }
-        function text_ch(){
-            now_text =$('.text_area>span').eq(0);
-            last_text =$('.text_area>span').eq(-1);
-
-            last_text.addClass("z-idx").stop().animate({},1000, function(){
-                $(".text_area").prepend(last_text);
-                now_text.removeClass("z-idx");
-            });
-
-        }
-    </script>
-
-
-    
-<!-- 작은 이미지 클릭시 큰이미지 변경 -->
-<script>
-    $(function(){
-        var smallImg=$('#button>label'); //작은이미지
-        var bigImg=$('.reviewImg>img'); //큰이미지
-        
-        smallImg.click(function(){
-
-            var path=$(this).attr('href');
-            bigImg.attr('src',path);
-            bigImg.css('opacity','0').stop().animate({'opacity':'1'},500);
-
-        });
-    });
-
-</script>
-
-
-<!-- 검색버튼 클릭시 검색박스 나오게 -->
-<script>
-    $(function(){
-        var S1=$('.allMenu_search');
-        var B1=$('.search_bar');
-        var X1=$('.search_X');
-
-        S1.click(function(){
-            B1.fadeIn(300);
-            S1.css('opacity','0');
-        });
-        X1.click(function(){
-            B1.fadeOut(300);
-            S1.css('opacity','1');
-        });
-    });
-</script>
-
-<!-- 햄버거버튼 클릭시 햄버거박스 나오게 -->
-<script>
-    $(function(){
-        var burger=$('.allMenu_burger');
-        var burgerX=$('.allMenu_burgerX');
-        var BOX=$('.burgerBOX');
-        var header=$('header>div>div');
-        var B1=$('.search_bar');
-        var my=$('.allMenu_my');
-
-        burger.click(function(){
-            BOX.slideDown(300);
-            burgerX.css('display','block');
-            burger.css('display','none');
-            header.css('background','rgba(0, 0, 0, 0.9)');
-            B1.css('display','block');
-            my.css('display','block');
-
-        });
-        burgerX.click(function(){
-            BOX.fadeOut(100);
-            burgerX.css('display','none');
-            burger.css('display','block');
-            header.css('background','none');
-            B1.css('display','none');
-            my.css('display','none');
-        });
-    });
-</script>
-
 </head>
 <body>
     <div id="wrapper">
@@ -539,6 +408,136 @@
     
     $(window).on("orientationchange resize", configureSlider);
     configureSlider();
+	    
+    <!-- 스크롤을 내리면 header>div에 activated가 추가된다 -->
+    <script>
+        $(function(){
+            $(window).scroll(function(){
+            var navbar = $(this).scrollTop();
+            console.log(navbar);
+            var $header = $('header>div');
+            if(navbar > 1){
+                $header.addClass('activated');
+            }else{
+                $header.removeClass('activated');
+            }
+            });
+        });
     </script>
+
+<!-- 스크롤 내리면 나오게 -->
+    <!-- <script>
+        $(document).ready(function() {
+        /* 1 */
+            $(window).scroll( function(){
+            /* 2 */
+                $('.fade_area').each( function(i){
+                    var plab_of_object = $(this).offset().top + $(this).outerHeight();
+                    var plab_of_window = $(window).scrollTop() + $(window).height();
+                    /* 3 */
+                    if( plab_of_window > plab_of_object){
+                        $(this).animate({'opacity':'1'},1500);
+                    }
+            });     
+        });
+    });
+    </script> -->
+
+    <script>
+        var now_text;
+        var last_text;
+
+        window.onload = function(){
+            setInterval("text_ch()",2000);
+        }
+        function text_ch(){
+            now_text =$('.text_area>span').eq(0);
+            last_text =$('.text_area>span').eq(-1);
+
+            last_text.addClass("z-idx").stop().animate({},1000, function(){
+                $(".text_area").prepend(last_text);
+                now_text.removeClass("z-idx");
+            });
+
+        }
+    </script>
+
+
+    
+<!-- 작은 이미지 클릭시 큰이미지 변경 -->
+<script>
+    $(function(){
+        var smallImg=$('#button>label'); //작은이미지
+        var bigImg=$('.reviewImg>img'); //큰이미지
+        
+        smallImg.click(function(){
+
+            var path=$(this).attr('href');
+            bigImg.attr('src',path);
+            bigImg.css('opacity','0').stop().animate({'opacity':'1'},500);
+
+        });
+    });
+
+</script>
+
+
+<!-- 검색버튼 클릭시 검색박스 나오게 -->
+<script>
+    $(function(){
+        var S1=$('.allMenu_search');
+        var B1=$('.search_bar');
+        var X1=$('.search_X');
+
+        S1.click(function(){
+            B1.fadeIn(300);
+            S1.css('opacity','0');
+        });
+        X1.click(function(){
+            B1.fadeOut(300);
+            S1.css('opacity','1');
+        });
+    });
+</script>
+
+<!-- 햄버거버튼 클릭시 햄버거박스 나오게 -->
+<script>
+    $(function(){
+        var burger=$('.allMenu_burger');
+        var burgerX=$('.allMenu_burgerX');
+        var BOX=$('.burgerBOX');
+        var header=$('header>div>div');
+        var B1=$('.search_bar');
+        var my=$('.allMenu_my');
+
+        burger.click(function(){
+            BOX.slideDown(300);
+            burgerX.css('display','block');
+            burger.css('display','none');
+            header.css('background','rgba(0, 0, 0, 0.9)');
+            B1.css('display','block');
+            my.css('display','block');
+
+        });
+        burgerX.click(function(){
+            BOX.fadeOut(100);
+            burgerX.css('display','none');
+            burger.css('display','block');
+            header.css('background','none');
+            B1.css('display','none');
+            my.css('display','none');
+        });
+    });
+</script>
+    </script>
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
+    <!--[if lt IE 9]>
+	<script src="html5shiv-master/dist/html5shiv.js"></script>
+    <![endif]-->
+    <script src="js/jquery-3.2.1.min.js"></script>
+
+    <!--box slider-->
+<script src="js/jquery.bxslider.js"></script>
+
 </body>
 </html>
